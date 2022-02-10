@@ -12,6 +12,7 @@ namespace ConsoleAppProject.App01
     {
         private double miles;
         private double feet;
+        private double metres;
 
         /// <summary>
         /// Runs the app
@@ -22,6 +23,12 @@ namespace ConsoleAppProject.App01
             InputMiles();
             CalculateFeet();
             OutputFeet();
+            InputFeet();
+            CalculateMiles();
+            OuputMiles();
+            InputMiles();
+            CalculateMetres();
+            OutputMetres();
         }
         /// <summary>
         /// Prints a heading
@@ -77,9 +84,25 @@ namespace ConsoleAppProject.App01
             miles = feet / 5280;
         }
 
+        /// <summary>
+        /// Outputs feet in miles
+        /// </summary>
         public void OuputMiles()
         {
             Console.WriteLine(feet + " feet is " + miles + " miles ");
+        }
+
+        /// <summary>
+        /// Converts miles to metres
+        /// </summary>
+        public void CalculateMetres()
+        {
+            metres = miles * 1609.34;
+        }
+
+        public void OutputMetres()
+        {
+            Console.WriteLine(miles + "miles is " + metres + " metres ");
         }
 
     }
