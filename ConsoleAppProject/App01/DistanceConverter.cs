@@ -58,5 +58,29 @@ namespace ConsoleAppProject.App01
         {
             Console.WriteLine(miles + " miles is " + feet + " feet ");
         }
+
+        /// <summary>
+        /// Asks the user to input the distance in feet
+        /// </summary>
+        public void InputFeet()
+        {
+            Console.WriteLine(" Input the distance in feet: ");
+            string value = Console.ReadLine();
+            feet = Convert.ToDouble(value);
+        }
+
+        /// <summary>
+        /// Converts feet to miles
+        /// </summary>
+        public void CalculateMiles()
+        {
+            miles = feet / 5280;
+        }
+
+        public void OuputMiles()
+        {
+            Console.WriteLine(feet + " feet is " + miles + " miles ");
+        }
+
     }
 }
