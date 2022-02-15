@@ -1,11 +1,11 @@
 # C# Console Applications App01 to App05
 | Author | Details |
 | ---- | ---- |
-**Name**: | Student Name  |
-**Student ID**: | 12345678 |
-**Course:** | Computing |
+**Name**: | Lottie Scragg |
+**Student ID**: | 22132481 |
+**Course:** | Artificial Intelligence |
 **Module**: | CO453     |
-**Started**: | January 2021 |    
+**Started**: | February 2022 |    
 
 1. App01: Distance Converter
 2. App02: BMI Calculator
