@@ -38,7 +38,11 @@ namespace ConsoleAppProject.App01
             do
             {
                 fromUnit = SelectUnit("Please select the unit to convert from : ");
-                Console.WriteLine("Please enter the right option");
+                if (fromUnit == null)
+                {
+                     Console.WriteLine("Please enter the right option");
+                }
+                
                 
             }
             while (fromUnit == null);
@@ -48,7 +52,11 @@ namespace ConsoleAppProject.App01
             do
             {
                 toUnit = SelectUnit("Please select the unit to convert to : ");
-                Console.WriteLine("Please enter the right option");
+                if (toUnit == null)
+                {
+                    Console.WriteLine("Please enter the right option");
+                }
+                
             }
             while (toUnit == null);
             
