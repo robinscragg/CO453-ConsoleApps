@@ -22,13 +22,13 @@ namespace ConsoleAppProject.App01
         private double fromDistance;
         private double toDistance;
 
-        private string fromUnit;
-        private string toUnit;
+        private DistanceUnits fromUnit;
+        private DistanceUnits toUnit;
 
         public DistanceConverter()
         {
-            fromUnit = MILES;
-            toUnit = FEET;
+            fromUnit = DistanceUnits.Miles;
+            toUnit = DistanceUnits.Feet;
 
         }
 
@@ -38,27 +38,16 @@ namespace ConsoleAppProject.App01
             do
             {
                 fromUnit = SelectUnit("Please select the unit to convert from : ");
-                if (fromUnit == null)
-                {
-                     Console.WriteLine("Please enter the right option");
-                }
-                
-                
             }
-            while (fromUnit == null);
+            while (fromUnit == DistanceUnits.NoUnit);
            
             Console.WriteLine($"You are converting from {fromUnit}");
 
             do
             {
-                toUnit = SelectUnit("Please select the unit to convert to : ");
-                if (toUnit == null)
-                {
-                    Console.WriteLine("Please enter the right option");
-                }
-                
+                toUnit = SelectUnit("Please select the unit to convert to : ");                               
             }
-            while (toUnit == null);
+            while (toUnit == DistanceUnits.NoUnit);
             
             Console.WriteLine($"You are converting to {toUnit}");
             Console.WriteLine();
@@ -81,65 +70,69 @@ namespace ConsoleAppProject.App01
                 toDistance = fromDistance;
             }
             
-            else if (fromUnit.Equals(MILES) && toUnit.Equals(FEET))
+            else if (fromUnit == DistanceUnits.Miles && toUnit == DistanceUnits.Feet)
             {
                 toDistance = fromDistance * FEET_IN_MILES;
             }
             
-            else if (fromUnit.Equals(FEET) && toUnit.Equals(MILES))
+            else if (fromUnit == DistanceUnits.Feet && toUnit == DistanceUnits.Miles)
             {
                 toDistance =  fromDistance / FEET_IN_MILES;
             }
 
-            else if (fromUnit.Equals(MILES) && toUnit.Equals(METRES))
+            else if (fromUnit == DistanceUnits.Miles && toUnit == DistanceUnits.Metres)
             {
                 toDistance = fromDistance * METRES_IN_MILES;
             }
 
-            else if (fromUnit.Equals(METRES) && toUnit.Equals(MILES))
+            else if (fromUnit == DistanceUnits.Metres && toUnit == DistanceUnits.Miles)
             {
                 toDistance =  fromDistance / METRES_IN_MILES;
             }
 
-            else if (fromUnit.Equals(FEET) && toUnit.Equals(METRES))
+            else if (fromUnit == DistanceUnits.Feet && toUnit == DistanceUnits.Metres)
             {
                 toDistance =  fromDistance * FEET_IN_METRES;
             }
 
-            else if (fromUnit.Equals(METRES) && toUnit.Equals(FEET))
+            else if (fromUnit == DistanceUnits.Metres && toUnit == DistanceUnits.Feet)
             {
                 toDistance = fromDistance / FEET_IN_METRES;
             }
 
         }
 
-        private string SelectUnit(string prompt)
+        private DistanceUnits SelectUnit(string prompt)
         {
             string choice = DisplayChoices(prompt);
-            return ExecuteChoice(choice);
-
-        }
-
-        private static string ExecuteChoice(string choice)
-        {
-            if (choice.Equals("1"))
+            if (fromUnit == DistanceUnits.NoUnit)
             {
-                return FEET;
-            }
-
-            else if (choice.Equals("2"))
-            {
-                return METRES;
-            }
-
-            else if (choice.Equals("3"))
-            {
-                return MILES;
+                return ExecuteChoice(choice, fromUnit);
             }
             else
             {
-                return null;
+                return ExecuteChoice(choice, toUnit);
             }
+            
+
+        }
+
+        private DistanceUnits ExecuteChoice(string choice, DistanceUnits unit)
+        {
+            switch(choice)
+            {
+                case "1": unit = DistanceUnits.Feet; break;
+                case "2": unit = DistanceUnits.Metres; break;
+                case "3": unit = DistanceUnits.Miles; break;
+
+                default: unit = DistanceUnits.NoUnit; break;
+            }
+
+            if(unit==DistanceUnits.NoUnit)
+            {
+                Console.WriteLine("Please select a correct option");
+            }
+            return unit;
 
         }
 
@@ -188,12 +181,12 @@ namespace ConsoleAppProject.App01
             Console.WriteLine($" {fromDistance} {fromUnit} is {toDistance} {toUnit}");
         }
 
-        public static string DisplayChoices(string prompt)
+        public string DisplayChoices(string prompt)
         {
             Console.WriteLine();
-            Console.WriteLine($"1. {FEET}");
-            Console.WriteLine($"2. {METRES}");
-            Console.WriteLine($"3. {MILES}");
+            Console.WriteLine($"1. {DistanceUnits.Feet}");
+            Console.WriteLine($"2. {DistanceUnits.Metres}");
+            Console.WriteLine($"3. {DistanceUnits.Miles}");
             Console.WriteLine();
 
             Console.WriteLine(prompt);
