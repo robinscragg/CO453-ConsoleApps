@@ -13,7 +13,7 @@ namespace ConsoleAppProject.App01
     {
         private const int FEET_IN_MILES = 5280;
         private const double METRES_IN_MILES = 1609.34;
-        private const double FEET_IN_METRES = 3.28084;
+        private const double FEET_IN_METRES = 0.3048;
 
         private const string FEET = "feet";
         private const string METRES = "metres";
@@ -35,23 +35,23 @@ namespace ConsoleAppProject.App01
         public void ConvertDistance()
         {
             OutputHeading();
-
-            fromUnit = SelectUnit("Please select the unit to convert from : ");
-            while (fromUnit == null)
+            do
             {
-                Console.WriteLine("You have not selected an available option");
-                Console.WriteLine("Please select either 1, 2 or 3");
-                fromUnit = SelectUnit($"Please select the unit to convert from : ");
+                fromUnit = SelectUnit("Please select the unit to convert from : ");
+                Console.WriteLine("Please enter the right option");
+                
             }
+            while (fromUnit == null);
+           
             Console.WriteLine($"You are converting from {fromUnit}");
 
-            toUnit = SelectUnit("Please select the unit to convert to : ");
-            while (toUnit == null)
+            do
             {
-                Console.WriteLine("You have not selected an available option");
-                Console.WriteLine("Please select either 1, 2 or 3");
-                toUnit = SelectUnit($"Please select the unit to convert to : ");
+                toUnit = SelectUnit("Please select the unit to convert to : ");
+                Console.WriteLine("Please enter the right option");
             }
+            while (toUnit == null);
+            
             Console.WriteLine($"You are converting to {toUnit}");
             Console.WriteLine();
 
@@ -128,8 +128,10 @@ namespace ConsoleAppProject.App01
             {
                 return MILES;
             }
-
-            return null;
+            else
+            {
+                return null;
+            }
 
         }
 
@@ -152,26 +154,20 @@ namespace ConsoleAppProject.App01
         {
             Console.WriteLine(prompt);
             string value = Console.ReadLine();
-            try
+            if(Double.TryParse(value, out double fromDistance))
             {
-                Convert.ToDouble(value);
-            }
-
-            catch(Exception)
-            {
-                Console.WriteLine("You have entered an invalid distance");
-                Console.WriteLine("Please try again");
-                InputDistance($"Input the distance in {fromUnit}");
-            }
-            if (Convert.ToDouble(value) < 0)
-            {
-                Console.WriteLine("You have to enter a positive number");
-                InputDistance($"Input the distance in {fromUnit}");
-                return 0.0;
+                fromDistance = Convert.ToDouble(value);
+                
+                if(fromDistance <0)
+                {
+                    fromDistance = InputDistance("Input a valid distance");
+                }
+                return fromDistance;
             }
             else
             {
-                return Convert.ToDouble(value);
+                fromDistance = InputDistance("Input a valid distance");
+                return fromDistance;
             }
                 
         }
