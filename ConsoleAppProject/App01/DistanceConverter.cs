@@ -151,20 +151,21 @@ namespace ConsoleAppProject.App01
         {
             Console.WriteLine(prompt);
             string value = Console.ReadLine();
-            if(Double.TryParse(value, out double fromDistance))
+            if(Double.TryParse(value, out double FromDistance))
             {
-                fromDistance = Convert.ToDouble(value);
+                FromDistance = Convert.ToDouble(value);
                 
-                if(fromDistance <0)
+                if(FromDistance <0)
                 {
-                    fromDistance = InputDistance("Input a valid distance");
+                   FromDistance = InputDistance("Input a valid distance");
+                   
                 }
-                return fromDistance;
+                return FromDistance;
             }
             else
             {
-                fromDistance = InputDistance("Input a valid distance");
-                return fromDistance;
+                FromDistance = InputDistance("Input a valid distance");
+                return FromDistance;
             }
                 
         }

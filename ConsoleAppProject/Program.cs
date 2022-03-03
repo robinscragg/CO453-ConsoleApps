@@ -1,4 +1,5 @@
 ﻿using ConsoleAppProject.App01;
+using ConsoleAppProject.App02;
 using System;
 
 namespace ConsoleAppProject
@@ -9,7 +10,7 @@ namespace ConsoleAppProject
     /// to start App01 to App05 for CO453 CW1
     /// 
     /// This Project has been modified by:
-    /// Lottie Scragg 10/02/2022
+    /// Lottie Scragg 01/03/2022
     /// </summary>
     public static class Program
     {
@@ -24,9 +25,34 @@ namespace ConsoleAppProject
             Console.WriteLine(" =================================================");
             Console.WriteLine();
 
-            DistanceConverter converter = new DistanceConverter();
-            converter.ConvertDistance();
+            SelectApp();
+        }
 
+        private static void SelectApp()
+        {
+            Console.WriteLine("Which app do you want to select? : ");
+            Console.WriteLine("1. Distance Converter");
+            Console.WriteLine("2. BMI Calculator");
+            Console.WriteLine();
+            string choice = Console.ReadLine();
+
+            if (choice == "1")
+            {
+                DistanceConverter converter = new DistanceConverter();
+                converter.ConvertDistance();
+            }
+
+            else if (choice == "2")
+            {
+                BMI bmi = new BMI();
+                bmi.Run();
+            }
+
+            else
+            {
+                Console.WriteLine("Please enter an available option ");
+                SelectApp();
+            }
         }
     }
 }
