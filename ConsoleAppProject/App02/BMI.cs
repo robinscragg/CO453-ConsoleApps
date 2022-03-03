@@ -12,6 +12,8 @@ namespace ConsoleAppProject.App02
     {
         public string Choice { get; set; }
 
+        public string choice2;
+
         public double WeightStones { get; set; }
         public double WeightPounds { get; set; }
 
@@ -47,8 +49,19 @@ namespace ConsoleAppProject.App02
             CalculateBMI();
 
             OutputBMI();
+
+            OutputBAME();
         }
 
+
+        private void OutputBAME()
+        {
+            Console.WriteLine();
+            Console.WriteLine("If you are Black, Asian, or other ethnic minority groups, you have a higher risk.");
+            Console.WriteLine("Adults 23.0 or more are at an increased risk.");
+            Console.WriteLine("Adults 27.5 or more are at a high risk.");
+
+        }
         private void OutputBMI()
         {
             Console.WriteLine();
@@ -79,10 +92,6 @@ namespace ConsoleAppProject.App02
                 Console.WriteLine("Your weight status is: obese class III");
             }
 
-            Console.WriteLine();
-            Console.WriteLine("If you are Black, Asian, or other ethnic minority groups, you have a higher risk.");
-            Console.WriteLine("Adults 23.0 or more are at an increased risk.");
-            Console.WriteLine("Adults 27.5 or more are at a high risk.");
         }
 
         public void CalculateBMI()
