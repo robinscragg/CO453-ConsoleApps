@@ -112,6 +112,31 @@ namespace ConsoleAppProject.Helpers
             return number;
 
         }
+        /// <summary>
+        /// Similar to the above method but only requires the
+        /// input to be above a certain number
+        /// </summary>
+        public static double InputNumber(string prompt, double min)
+        {
+            bool isValid;
+            double number;
+
+            do
+            {
+                number = InputNumber(prompt);
+
+                if (number < min)
+                {
+                    isValid = false;
+                    Console.WriteLine($"Number must be above {min}");
+                }
+                else isValid = true;
+
+            } while (!isValid);
+
+            return number;
+
+        }
 
         /// <summary>
         /// Output a short heading in green for the application
@@ -125,7 +150,7 @@ namespace ConsoleAppProject.Helpers
 
             Console.WriteLine("\n ---------------------------------");
             Console.WriteLine($"    {heading}          ");
-            Console.WriteLine("     by Derek Peacock           ");
+            Console.WriteLine("     by Robin Scragg          ");
             Console.WriteLine(" ---------------------------------" +
                 "\n");
 

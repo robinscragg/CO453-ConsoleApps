@@ -1,5 +1,6 @@
 ﻿using ConsoleAppProject.App01;
 using ConsoleAppProject.App02;
+using ConsoleAppProject.Helpers;
 using System;
 
 namespace ConsoleAppProject
@@ -19,12 +20,7 @@ namespace ConsoleAppProject
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
 
-            Console.WriteLine();
-            Console.WriteLine(" =================================================");
-            Console.WriteLine("    BNU CO453 Applications Programming 2021-2022! ");
-            Console.WriteLine("             by Lottie Scragg                     ");
-            Console.WriteLine(" =================================================");
-            Console.WriteLine();
+            ConsoleHelper.OutputHeading("BNU CO453 Applications Programming 2021-2022!");
 
             SelectApp();
         }
@@ -33,28 +29,20 @@ namespace ConsoleAppProject
         private static void SelectApp()
         {
             Console.WriteLine("Which app do you want to select? : ");
-            Console.WriteLine("1. Distance Converter");
-            Console.WriteLine("2. BMI Calculator");
-            Console.WriteLine();
-            string choice = Console.ReadLine();
-
-            if (choice == "1")
+            string[] choices = { "Distance Converter", "BMI Calculator" };
+            int choice = ConsoleHelper.SelectChoice(choices);
+                       
+            if (choice == 1)
             {
                 DistanceConverter converter = new DistanceConverter();
                 converter.ConvertDistance();
             }
 
-            else if (choice == "2")
+            else if (choice == 2)
             {
                 BMI bmi = new BMI();
                 bmi.Run();
-            }
-
-            else
-            {
-                Console.WriteLine("Please enter an available option ");
-                SelectApp();
-            }
+            }            
         }
     }
 }

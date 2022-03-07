@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ConsoleAppProject.Helpers;
+using System;
+
 namespace ConsoleAppProject.App02
 
 {
@@ -14,8 +16,6 @@ namespace ConsoleAppProject.App02
     {
         public string Choice { get; set; }
 
-        public string choice2;
-
         public double WeightStones { get; set; }
         public double WeightPounds { get; set; }
 
@@ -30,15 +30,14 @@ namespace ConsoleAppProject.App02
         // Runs the app
         public void Run()
         {
-            OutputHeading();
-
-            do
-            {
-                Choice = ChooseUnits();
-            }
-            while (Choice == null);
-
+            ConsoleHelper.OutputHeading("App02 Body Mass Index (BMI) Calculator");
+            Console.WriteLine("BMI is an estimate of your risk to weight-related health risk");
             Console.WriteLine();
+
+            string [] choices = {"imperial", "metric"};
+            int choice = ConsoleHelper.SelectChoice(choices);
+            Choice = ChooseUnits(choice);
+            
             Console.WriteLine($"You have selected {Choice} units");
 
             if (Choice == "metric" )
@@ -64,7 +63,6 @@ namespace ConsoleAppProject.App02
             Console.WriteLine("If you are Black, Asian, or other ethnic minority groups, you have a higher risk.");
             Console.WriteLine("Adults 23.0 or more are at an increased risk.");
             Console.WriteLine("Adults 27.5 or more are at a high risk.");
-
         }
 
         // Outputs BMI and BMI group
@@ -118,13 +116,13 @@ namespace ConsoleAppProject.App02
             Console.WriteLine("Your height will be entered in feet and inches");
             Console.WriteLine();
 
-            WeightStones = InputMeasurement("Please enter your weight in stones: ", WeightStones);
-            WeightPounds = InputMeasurement("Please enter your weight in pounds: ", WeightPounds);
+            WeightStones = ConsoleHelper.InputNumber("Please enter your weight in stones: ", 0);
+            WeightPounds = ConsoleHelper.InputNumber("Please enter your weight in pounds: ", 0, 13);
 
             Console.WriteLine();
 
-            HeightFeet = InputMeasurement("Please enter your height in feet: ", HeightFeet);
-            HeightInches = InputMeasurement("Please enter your height in inches: ", HeightInches);
+            HeightFeet = ConsoleHelper.InputNumber("Please enter your height in feet: ", 0);
+            HeightInches = ConsoleHelper.InputNumber("Please enter your height in inches: ", 0, 11);
         }
 
         // Asks for user to input weight and height in metric measurements
@@ -134,71 +132,25 @@ namespace ConsoleAppProject.App02
             Console.WriteLine("Your height will be entered in metres");
             Console.WriteLine();
 
-            Weight = InputMeasurement("Please enter your weight in kilograms: ", Weight);
+            Weight = ConsoleHelper.InputNumber("Please enter your weight in kilograms: ", 0);
 
             Console.WriteLine();
 
-            Height = InputMeasurement("Please enter your height in metres: ", Height);
+            Height = ConsoleHelper.InputNumber("Please enter your height in metres: ", 0);
         }
-
-        // Outputs heading
-        public void OutputHeading()
-        {
-            Console.WriteLine(" ====================================== ");
-            Console.WriteLine(" App02 Body Mass Index (BMI) Calculator ");
-            Console.WriteLine("            by Lottie Scragg            ");
-            Console.WriteLine(" ====================================== ");
-            Console.WriteLine();
-            Console.WriteLine("BMI is an estimate of your risk to weight-related health risk");
-            Console.WriteLine();
-        }
-
 
         // Asks user to select which units they want to use
-        public string ChooseUnits()
-        {
-            
-            Console.WriteLine("Imperial Units: weight in stones and pounds, height in feet and inches");
-            Console.WriteLine("Metric Units: weight in Kilograms, height in metres");
-            Console.WriteLine();
-            Console.WriteLine("Do you want to use imperial units or metric units? ");
-            Console.WriteLine("Please enter either i or m ");
-            Choice = Console.ReadLine();
-            if (Choice == "i")
+        public string ChooseUnits(int choice)
+        {           
+            if (choice == 1)
             {
                  return "imperial"; 
             }
-            else if (Choice == "m")
+            else if (choice == 2)
             {
                 return "metric";
             }
-            else
-            {
-                Console.WriteLine("Please enter either i for imperial units or m for metric units");
-                return null;
-            }           
-        }
-
-        // Assigns entered value to a measurement variable
-        public double InputMeasurement(string prompt, double measurement)
-        {   
-           Console.WriteLine(prompt);
-           string value = Console.ReadLine();
-           if(Double.TryParse(value, out measurement))
-           {
-               measurement = Convert.ToDouble(value);
-
-               if(measurement < 0)
-               {
-                  measurement = InputMeasurement("Please enter a valid number ", measurement);     
-               }
-                return measurement;
-           }
-           else
-           {
-                measurement = InputMeasurement("Please enter a valid number ", measurement);
-                return measurement;
-           }
-        }
+            return "";                    
+        }       
     }
 }

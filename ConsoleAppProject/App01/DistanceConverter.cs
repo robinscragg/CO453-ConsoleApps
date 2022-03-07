@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleAppProject.Helpers;
+using System;
 
 namespace ConsoleAppProject.App01
 {
@@ -25,13 +26,13 @@ namespace ConsoleAppProject.App01
         {
             FromUnit = DistanceUnits.Miles;
             ToUnit = DistanceUnits.Feet;
-
         }
 
         // Runs the app
         public void ConvertDistance()
         {
-            OutputHeading();
+            ConsoleHelper.OutputHeading("App01 Distance Converter");
+
             do
             {
                 FromUnit = SelectUnit("Please select the unit to convert from : ");
@@ -52,12 +53,11 @@ namespace ConsoleAppProject.App01
             Console.WriteLine($"You are converting from {FromUnit} to {ToUnit}");
             Console.WriteLine();
 
-            FromDistance = InputDistance($"Input the distance in {FromUnit} : ");
+            FromDistance = ConsoleHelper.InputNumber($"Input the distance in {FromUnit} : ", 0);
 
             CalculateDistance();
 
             OutputDistance();
-
         }
 
         // Calculates conversion between selected units
@@ -97,7 +97,6 @@ namespace ConsoleAppProject.App01
             {
                 ToDistance = FromDistance / FEET_IN_METRES;
             }
-
         }
 
         //Asks user for from unit or to unit
@@ -106,68 +105,30 @@ namespace ConsoleAppProject.App01
             string choice = DisplayChoices(prompt);
             if (FromUnit == DistanceUnits.NoUnit)
             {
-                return ExecuteChoice(choice, FromUnit);
+               return ExecuteChoice(choice, FromUnit);
             }
             else
             {
                 return ExecuteChoice(choice, ToUnit);
-            }
-            
+            }            
         }
 
 
         // Selects the unit depending on user's entered choice
         private DistanceUnits ExecuteChoice(string choice, DistanceUnits unit)
         {
-            switch(choice)
+            unit = choice switch
             {
-                case "1": unit = DistanceUnits.Feet; break;
-                case "2": unit = DistanceUnits.Metres; break;
-                case "3": unit = DistanceUnits.Miles; break;
-
-                default: unit = DistanceUnits.NoUnit; break;
-            }
-
-            if(unit==DistanceUnits.NoUnit)
+                "1" => DistanceUnits.Feet,
+                "2" => DistanceUnits.Metres,
+                "3" => DistanceUnits.Miles,
+                _ => DistanceUnits.NoUnit,
+            };
+            if (unit==DistanceUnits.NoUnit)
             {
                 Console.WriteLine("Please select a correct option");
             }
             return unit;
-
-        }
-
-        // Prints a heading
-        public void OutputHeading()
-        {
-            Console.WriteLine(" ======================== ");
-            Console.WriteLine(" App01 Distance Converter ");
-            Console.WriteLine("     by Lottie Scragg     ");
-            Console.WriteLine(" ======================== ");
-
-        }
-
-        // Asks the user to input the value of the distance
-        public double InputDistance(string prompt)
-        {
-            Console.WriteLine(prompt);
-            string value = Console.ReadLine();
-            if(Double.TryParse(value, out double FromDistance))
-            {
-                FromDistance = Convert.ToDouble(value);
-                
-                if(FromDistance <0)
-                {
-                   FromDistance = InputDistance("Input a valid distance");
-                   
-                }
-                return FromDistance;
-            }
-            else
-            {
-                FromDistance = InputDistance("Input a valid distance");
-                return FromDistance;
-            }
-                
         }
 
         // Prints the calculated conversion
@@ -189,6 +150,5 @@ namespace ConsoleAppProject.App01
             string choice = Console.ReadLine();
             return choice;
         }
-
     }
 }
