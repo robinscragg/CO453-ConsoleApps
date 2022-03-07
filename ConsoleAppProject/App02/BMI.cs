@@ -3,10 +3,12 @@ namespace ConsoleAppProject.App02
 
 {
     /// <summary>
-    /// Please describe the main features of this App
+    /// Calculates the user's BMI.
+    /// Asks for height and weight in either
+    /// imperial or metric, which the user selects
     /// </summary>
     /// <author>
-    /// Student Name version 0.1
+    /// Robin Scragg 07/03/2022
     /// </author>
     public class BMI
     {
@@ -24,6 +26,8 @@ namespace ConsoleAppProject.App02
         public double Height { get; set; }
 
         public int Bmi { get; set; }
+
+        // Runs the app
         public void Run()
         {
             OutputHeading();
@@ -53,7 +57,7 @@ namespace ConsoleAppProject.App02
             OutputBAME();
         }
 
-
+        // Outputs a message for BAME
         private void OutputBAME()
         {
             Console.WriteLine();
@@ -62,6 +66,8 @@ namespace ConsoleAppProject.App02
             Console.WriteLine("Adults 27.5 or more are at a high risk.");
 
         }
+
+        // Outputs BMI and BMI group
         private void OutputBMI()
         {
             Console.WriteLine();
@@ -94,6 +100,7 @@ namespace ConsoleAppProject.App02
 
         }
 
+        // Calculates BMI
         public void CalculateBMI()
         {
             if (Weight == 0)
@@ -103,6 +110,8 @@ namespace ConsoleAppProject.App02
             }
             Bmi = (int)(Weight / (Height * Height));
         }
+
+        // Asks for user to enter weight and height in imperial units
         private void InputImperialMeasurements()
         {
             Console.WriteLine("Your weight will be entered in stones and pounds");
@@ -118,6 +127,7 @@ namespace ConsoleAppProject.App02
             HeightInches = InputMeasurement("Please enter your height in inches: ", HeightInches);
         }
 
+        // Asks for user to input weight and height in metric measurements
         private void InputMetricMeasurements()
         {
             Console.WriteLine("Your weight will be entered in kilograms");
@@ -131,6 +141,7 @@ namespace ConsoleAppProject.App02
             Height = InputMeasurement("Please enter your height in metres: ", Height);
         }
 
+        // Outputs heading
         public void OutputHeading()
         {
             Console.WriteLine(" ====================================== ");
@@ -142,6 +153,8 @@ namespace ConsoleAppProject.App02
             Console.WriteLine();
         }
 
+
+        // Asks user to select which units they want to use
         public string ChooseUnits()
         {
             
@@ -166,6 +179,7 @@ namespace ConsoleAppProject.App02
             }           
         }
 
+        // Assigns entered value to a measurement variable
         public double InputMeasurement(string prompt, double measurement)
         {   
            Console.WriteLine(prompt);

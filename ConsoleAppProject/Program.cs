@@ -10,10 +10,11 @@ namespace ConsoleAppProject
     /// to start App01 to App05 for CO453 CW1
     /// 
     /// This Project has been modified by:
-    /// Lottie Scragg 01/03/2022
+    /// Robin Scragg 07/03/2022
     /// </summary>
     public static class Program
     {
+        // Header is printed
         public static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -28,6 +29,7 @@ namespace ConsoleAppProject
             SelectApp();
         }
 
+        // User selects which app they want to use
         private static void SelectApp()
         {
             Console.WriteLine("Which app do you want to select? : ");

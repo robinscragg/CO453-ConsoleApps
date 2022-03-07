@@ -4,10 +4,10 @@ namespace ConsoleAppProject.App01
 {
     /// <summary>
     /// Converts from a user selected unit of 
-    /// distance to another
+    /// a distance to another
     /// </summary>
     /// <author>
-    /// Lottie Scragg
+    /// Robin Scragg 07/03/2022
     /// </author>
     public class DistanceConverter
     {
@@ -28,6 +28,7 @@ namespace ConsoleAppProject.App01
 
         }
 
+        // Runs the app
         public void ConvertDistance()
         {
             OutputHeading();
@@ -59,6 +60,7 @@ namespace ConsoleAppProject.App01
 
         }
 
+        // Calculates conversion between selected units
         public void CalculateDistance()
         {
             if (FromUnit == ToUnit)
@@ -98,6 +100,7 @@ namespace ConsoleAppProject.App01
 
         }
 
+        //Asks user for from unit or to unit
         private DistanceUnits SelectUnit(string prompt)
         {
             string choice = DisplayChoices(prompt);
@@ -110,9 +113,10 @@ namespace ConsoleAppProject.App01
                 return ExecuteChoice(choice, ToUnit);
             }
             
-
         }
 
+
+        // Selects the unit depending on user's entered choice
         private DistanceUnits ExecuteChoice(string choice, DistanceUnits unit)
         {
             switch(choice)
@@ -132,9 +136,7 @@ namespace ConsoleAppProject.App01
 
         }
 
-        /// <summary>
-        /// Prints a heading
-        /// </summary>
+        // Prints a heading
         public void OutputHeading()
         {
             Console.WriteLine(" ======================== ");
@@ -144,9 +146,7 @@ namespace ConsoleAppProject.App01
 
         }
 
-        /// <summary>
-        /// Asks the user to input the distance 
-        /// </summary>
+        // Asks the user to input the value of the distance
         public double InputDistance(string prompt)
         {
             Console.WriteLine(prompt);
@@ -170,14 +170,13 @@ namespace ConsoleAppProject.App01
                 
         }
 
-        /// <summary>
-        /// Prints the output
-        /// </summary>
+        // Prints the calculated conversion
         public void OutputDistance()
         {
             Console.WriteLine($" {FromDistance} {FromUnit} is {ToDistance} {ToUnit}");
         }
 
+        // Prints options of units
         public string DisplayChoices(string prompt)
         {
             Console.WriteLine();
