@@ -11,7 +11,7 @@ namespace WebApps.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+       public IActionResult Index()
         {
             return View();
         }
@@ -20,7 +20,6 @@ namespace WebApps.Controllers
         {
             return View();
         }
-
         public IActionResult Privacy()
         {
             return View();
