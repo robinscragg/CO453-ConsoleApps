@@ -159,7 +159,7 @@ namespace ConsoleAppProject.App03
         {
             foreach (Grades val in Enum.GetValues(typeof(Grades)))
             {
-                Console.WriteLine($"The percentage of students that got {val} is {Gradeprofile[(int)val]}");
+                Console.WriteLine($"The percentage of students that got {val} is {Gradeprofile[(int)val]} %");
             }          
         }
 

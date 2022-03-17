@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApps.Models;
+using ConsoleAppProject.App03;
 
 namespace WebApps.Controllers
 {
