@@ -1,6 +1,7 @@
 ﻿using ConsoleAppProject.App01;
 using ConsoleAppProject.App02;
 using ConsoleAppProject.App03;
+using ConsoleAppProject.App04;
 using ConsoleAppProject.Helpers;
 using System;
 
@@ -30,7 +31,7 @@ namespace ConsoleAppProject
         private static void SelectApp()
         {
             Console.WriteLine("Which app do you want to select? : ");
-            string[] choices = { "Distance Converter", "BMI Calculator", "Student Marks" };
+            string[] choices = { "Distance Converter", "BMI Calculator", "Student Marks", "Social Network"};
             int choice = ConsoleHelper.SelectChoice(choices);
                        
             if (choice == 1)
@@ -45,10 +46,16 @@ namespace ConsoleAppProject
                 bmi.Run();
             } 
             
-            else
+            else if (choice == 3)
             {
                 StudentGrades grades = new StudentGrades();
                 grades.Run();
+            }
+
+            else
+            {
+                SocialNetwork social = new SocialNetwork();
+                social.DisplayMenu();
             }
         }
     }

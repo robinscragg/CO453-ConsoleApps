@@ -4,10 +4,8 @@ using ConsoleAppProject.App03;
 
 namespace WebApps.Pages
 {
-    public class StudentMarksModel : PageModel
+    public class StudentGradesModel : PageModel
     {
-        [BindProperty]
-        public StudentGrades StudentGrades { get; set; }
         public void OnGet()
         {
         }
